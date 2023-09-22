@@ -1,14 +1,28 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, FlatList } from 'react-native';
 
 import Button from '../../components/Button';
 import { Text, View } from '../../components/Themed';
 
 export default function TabOneScreen() {
+  const data = [
+    { key: 'item1', text: 'Item 1' },
+    { key: 'item2', text: 'Item 2' },
+  ];
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Button title="+" onPress={() => null} />
+      <FlatList
+        data={data}
+        renderItem={({ item }) => (
+          <View style={styles.item}>
+            <Text>{item.text}</Text>
+          </View>
+        )}
+        keyExtractor={(item) => item.key}
+        style={styles.itemsList}
+      />
+      <View style={styles.bottomRightButtonContainer}>
+        <Button title="+" onPress={() => {}} />
+      </View>
     </View>
   );
 }
@@ -16,16 +30,19 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  itemsList: {
+    flex: 1,
+    paddingHorizontal: 16, 
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  item: {
+    padding: 8,
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+  },
+  bottomRightButtonContainer: {
+    position: 'absolute',
+    bottom: 16, 
+    right: 16, 
   },
 });
