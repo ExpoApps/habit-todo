@@ -1,12 +1,13 @@
 import React from 'react';
-import { Text, StyleSheet, Pressable } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Text, View } from './Themed';
 
-export default function Button(props: { onPress: () => void, title: string }) {
-  const { onPress, title = 'Save' } = props;
+export default function Button(props: {title: string }) {
+  const { title = 'Save' } = props;
   return (
-    <Pressable style={styles.button} onPress={onPress}>
+    <View style={styles.button} >
       <Text style={styles.text}>{title}</Text>
-    </Pressable>
+    </View>
   );
 }
 

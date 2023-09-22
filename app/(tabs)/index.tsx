@@ -2,6 +2,7 @@ import { StyleSheet, FlatList } from 'react-native';
 
 import Button from '../../components/Button';
 import { Text, View } from '../../components/Themed';
+import { Link } from 'expo-router';
 
 export default function TabOneScreen() {
   const data = [
@@ -13,15 +14,17 @@ export default function TabOneScreen() {
       <FlatList
         data={data}
         renderItem={({ item }) => (
-          <View style={styles.item}>
+          <Link href="/modal" style={styles.item}>
             <Text>{item.text}</Text>
-          </View>
+          </Link>
         )}
         keyExtractor={(item) => item.key}
         style={styles.itemsList}
       />
       <View style={styles.bottomRightButtonContainer}>
-        <Button title="+" onPress={() => {}} />
+        <Link href="/modal" >
+          <Button title="+" />
+        </Link>
       </View>
     </View>
   );
